@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HelloEntityFramework.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="HelloEntityFrameworkStoreContainer">
+          <EntitySet Name="Auteur" EntityType="HelloEntityFramework.Store.Auteur" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Client" EntityType="HelloEntityFramework.Store.Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CoordonneesAuteur" EntityType="HelloEntityFramework.Store.CoordonneesAuteur" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Editeur" EntityType="HelloEntityFramework.Store.Editeur" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EditeurBD" EntityType="HelloEntityFramework.Store.EditeurBD" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EditeurInformatique" EntityType="HelloEntityFramework.Store.EditeurInformatique" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EditeurPsychologie" EntityType="HelloEntityFramework.Store.EditeurPsychologie" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Emprunt" EntityType="HelloEntityFramework.Store.Emprunt" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Exemplaire" EntityType="HelloEntityFramework.Store.Exemplaire" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Publi_Auteur" EntityType="HelloEntityFramework.Store.Publi_Auteur" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Publication" EntityType="HelloEntityFramework.Store.Publication" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.Store.VueLivres" store:Type="Views" store:Schema="dbo" store:Name="VueLivres">
+            <DefiningQuery>SELECT 
+      [VueLivres].[Id Publication] AS [Id Publication], 
+      [VueLivres].[Titre Livre] AS [Titre Livre], 
+      [VueLivres].[Editeur] AS [Editeur], 
+      [VueLivres].[Exemplaires] AS [Exemplaires]
+      FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CoordonneesAuteur_Auteur" Association="HelloEntityFramework.Store.FK_CoordonneesAuteur_Auteur">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="CoordonneesAuteur" EntitySet="CoordonneesAuteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprunt_Client" Association="HelloEntityFramework.Store.FK_Emprunt_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprunt_Exemplaire" Association="HelloEntityFramework.Store.FK_Emprunt_Exemplaire">
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exemplaire_Publication" Association="HelloEntityFramework.Store.FK_Exemplaire_Publication">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publi_Auteur_Auteur" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Auteur">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publi_Auteur_Publication" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Publication">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publication_Editeur" Association="HelloEntityFramework.Store.FK_Publication_Editeur">
+            <End Role="Editeur" EntitySet="Editeur" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Auteur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" />
+          <Property Name="Pays" Type="varchar" MaxLength="50" />
+          <Property Name="Rue" Type="varchar" MaxLength="100" />
+          <Property Name="CodePostal" Type="char" MaxLength="5" />
+          <Property Name="Telephone" Type="char" MaxLength="10" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CoordonneesAuteur">
+          <Key>
+            <PropertyRef Name="IdAuteur" />
+          </Key>
+          <Property Name="IdAuteur" Type="int" Nullable="false" />
+          <Property Name="Rue" Type="varchar" MaxLength="50" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" />
+          <Property Name="CodePostal" Type="char" MaxLength="5" />
+          <Property Name="TelephoneFixe" Type="char" MaxLength="10" />
+          <Property Name="TelephoneMobile" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Editeur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EditeurBD">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NombreBDEditees" Type="int" />
+        </EntityType>
+        <EntityType Name="EditeurInformatique">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NombreLivresInfoEdites" Type="int" />
+        </EntityType>
+        <EntityType Name="EditeurPsychologie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NombrePubliPsyEditees" Type="int" />
+        </EntityType>
+        <EntityType Name="Emprunt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdExemplaire" Type="int" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Exemplaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPublication" Type="int" Nullable="false" />
+          <Property Name="DateAchat" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publi_Auteur">
+          <Key>
+            <PropertyRef Name="IdAuteur" />
+            <PropertyRef Name="IdPublication" />
+          </Key>
+          <Property Name="IdAuteur" Type="int" Nullable="false" />
+          <Property Name="IdPublication" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEditeur" Type="int" Nullable="false" />
+          <Property Name="Titre" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'helloentityfx.dbo.VueLivres' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VueLivres">
+          <Key>
+            <PropertyRef Name="Id Publication" />
+          </Key>
+          <Property Name="Id Publication" Type="int" Nullable="false" />
+          <Property Name="Titre Livre" Type="varchar" MaxLength="50" />
+          <Property Name="Editeur" Type="varchar" MaxLength="50" />
+          <Property Name="Exemplaires" Type="int" />
+        </EntityType>
+        <Association Name="FK_CoordonneesAuteur_Auteur">
+          <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
+          <End Role="CoordonneesAuteur" Type="HelloEntityFramework.Store.CoordonneesAuteur" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Auteur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoordonneesAuteur">
+              <PropertyRef Name="IdAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emprunt_Client">
+          <End Role="Client" Type="HelloEntityFramework.Store.Client" Multiplicity="1" />
+          <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emprunt">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emprunt_Exemplaire">
+          <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="1" />
+          <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exemplaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emprunt">
+              <PropertyRef Name="IdExemplaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exemplaire_Publication">
+          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
+          <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdPublication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publi_Auteur_Auteur">
+          <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
+          <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auteur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publi_Auteur">
+              <PropertyRef Name="IdAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publi_Auteur_Publication">
+          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
+          <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publi_Auteur">
+              <PropertyRef Name="IdPublication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publication_Editeur">
+          <End Role="Editeur" Type="HelloEntityFramework.Store.Editeur" Multiplicity="1" />
+          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editeur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="IdEditeur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreerClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nom" Type="varchar" Mode="In" />
+          <Parameter Name="Prenom" Type="varchar" Mode="In" />
+          <Parameter Name="Pays" Type="varchar" Mode="In" />
+          <Parameter Name="Rue" Type="varchar" Mode="In" />
+          <Parameter Name="CodePostal" Type="char" Mode="In" />
+          <Parameter Name="Telephone" Type="char" Mode="In" />
+          <Parameter Name="Ville" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetAuteurs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MAJClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Nom" Type="varchar" Mode="In" />
+          <Parameter Name="Prenom" Type="varchar" Mode="In" />
+          <Parameter Name="Pays" Type="varchar" Mode="In" />
+          <Parameter Name="Rue" Type="varchar" Mode="In" />
+          <Parameter Name="CodePostal" Type="char" Mode="In" />
+          <Parameter Name="Telephone" Type="char" Mode="In" />
+          <Parameter Name="Ville" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SupprimerClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HelloEntityFramework" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Modele">
+          <EntitySet Name="Auteur" EntityType="HelloEntityFramework.Auteur" />
+          <EntitySet Name="Client" EntityType="HelloEntityFramework.Client" />
+          <EntitySet Name="Editeur" EntityType="HelloEntityFramework.Editeur" />
+          <EntitySet Name="Emprunt" EntityType="HelloEntityFramework.Emprunt" />
+          <EntitySet Name="Exemplaire" EntityType="HelloEntityFramework.Exemplaire" />
+          <EntitySet Name="Publication" EntityType="HelloEntityFramework.Publication" />
+          <AssociationSet Name="FK_Emprunt_Client" Association="HelloEntityFramework.FK_Emprunt_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publication_Editeur" Association="HelloEntityFramework.FK_Publication_Editeur">
+            <End Role="Editeur" EntitySet="Editeur" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprunt_Exemplaire" Association="HelloEntityFramework.FK_Emprunt_Exemplaire">
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exemplaire_Publication" Association="HelloEntityFramework.FK_Exemplaire_Publication">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="Publi_Auteur" Association="HelloEntityFramework.Publi_Auteur">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
+          <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
+          </EntityContainer>
+        <EntityType Name="Auteur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Auteur" ToRole="Publication" />
+          <Property Name="Rue" Type="String" Nullable="true" />
+          <Property Name="Ville" Type="String" Nullable="true" />
+          <Property Name="CodePostal" Type="String" Nullable="true" />
+          <Property Name="TelephoneFixe" Type="String" Nullable="true" />
+          <Property Name="TelephoneMobile" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" ConcurrencyMode="Fixed" />
+          <Property Name="Pays" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Rue" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CodePostal" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+          <Property Name="Telephone" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Client" ToRole="Emprunt" />
+        </EntityType>
+        <EntityType Name="Editeur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Publication_Editeur" FromRole="Editeur" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="EditeurBD" BaseType="HelloEntityFramework.Editeur">
+          <Property Name="NombreBDEditees" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EditeurInformatique" BaseType="HelloEntityFramework.Editeur">
+          <Property Name="NombreLivresInfoEdites" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EditeurPsychologie" BaseType="HelloEntityFramework.Editeur">
+          <Property Name="NombrePubliPsyEditees" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Emprunt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" />
+          <NavigationProperty Name="Client" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Emprunt" ToRole="Client" />
+          <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Emprunt" ToRole="Exemplaire" />
+        </EntityType>
+        <EntityType Name="Exemplaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DateAchat" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Exemplaire" ToRole="Emprunt" />
+          <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Exemplaire" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="Publication" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Titre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Editeur" Relationship="HelloEntityFramework.FK_Publication_Editeur" FromRole="Publication" ToRole="Editeur" />
+          <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Publication" ToRole="Exemplaire" />
+          <NavigationProperty Name="Auteur" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Publication" ToRole="Auteur" />
+        </EntityType>
+        <Association Name="FK_Emprunt_Client">
+          <End Role="Client" Type="HelloEntityFramework.Client" Multiplicity="1" />
+          <End Role="Emprunt" Type="HelloEntityFramework.Emprunt" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Publication_Editeur">
+          <End Role="Editeur" Type="HelloEntityFramework.Editeur" Multiplicity="1" />
+          <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Emprunt_Exemplaire">
+          <End Role="Exemplaire" Type="HelloEntityFramework.Exemplaire" Multiplicity="1" />
+          <End Role="Emprunt" Type="HelloEntityFramework.Emprunt" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Exemplaire_Publication">
+          <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="1" />
+          <End Role="Exemplaire" Type="HelloEntityFramework.Exemplaire" Multiplicity="*" />
+        </Association>
+        <Association Name="Publi_Auteur">
+          <End Role="Auteur" Type="HelloEntityFramework.Auteur" Multiplicity="*" />
+          <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Livre" BaseType="HelloEntityFramework.Publication" />
+        <EntityType Name="Article" BaseType="HelloEntityFramework.Publication" >
+          <Property Name="Url" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="VueLivres">
+          <Key>
+            <PropertyRef Name="Id_Publication" /></Key>
+          <Property Name="Id_Publication" Type="Int32" Nullable="false" />
+          <Property Name="Titre_Livre" Type="String" Nullable="true" />
+          <Property Name="Editeur" Type="String" Nullable="true" />
+          <Property Name="Exemplaires" Type="Int32" Nullable="true" /></EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="HelloEntityFrameworkStoreContainer" CdmEntityContainer="Modele">
+          <EntitySetMapping Name="Auteur">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Auteur)">
+              <MappingFragment StoreEntitySet="Auteur">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+              </MappingFragment>
+              <MappingFragment StoreEntitySet="CoordonneesAuteur">
+                <ScalarProperty Name="Id" ColumnName="IdAuteur" />
+                <ScalarProperty Name="TelephoneMobile" ColumnName="TelephoneMobile" />
+                <ScalarProperty Name="TelephoneFixe" ColumnName="TelephoneFixe" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Rue" ColumnName="Rue" /></MappingFragment></EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Client)">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Pays" ColumnName="Pays" />
+                <ScalarProperty Name="Rue" ColumnName="Rue" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+
+              
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HelloEntityFramework.Client">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HelloEntityFramework.Store.CreerClient">
+                  <ScalarProperty Name="Ville" ParameterName="Ville" />
+                  <ScalarProperty Name="Telephone" ParameterName="Telephone" />
+                  <ScalarProperty Name="CodePostal" ParameterName="CodePostal" />
+                  <ScalarProperty Name="Rue" ParameterName="Rue" />
+                  <ScalarProperty Name="Pays" ParameterName="Pays" />
+                  <ScalarProperty Name="Prenom" ParameterName="Prenom" />
+                  <ScalarProperty Name="Nom" ParameterName="Nom" />
+                  <ResultBinding Name="Id" ColumnName="Id" />
+                  </InsertFunction>
+                <UpdateFunction FunctionName="HelloEntityFramework.Store.MAJClient">
+                  <ScalarProperty Name="Ville" ParameterName="Ville" Version="Current" />
+                  <ScalarProperty Name="Telephone" ParameterName="Telephone" Version="Current" />
+                  <ScalarProperty Name="CodePostal" ParameterName="CodePostal" Version="Current" />
+                  <ScalarProperty Name="Rue" ParameterName="Rue" Version="Current" />
+                  <ScalarProperty Name="Pays" ParameterName="Pays" Version="Current" />
+                  <ScalarProperty Name="Prenom" ParameterName="Prenom" Version="Current" />
+                  <ScalarProperty Name="Nom" ParameterName="Nom" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="HelloEntityFramework.Store.SupprimerClient">
+                  <ScalarProperty Name="Id" ParameterName="Id" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Editeur">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Editeur)">
+              <MappingFragment StoreEntitySet="Editeur">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurBD)">
+              <MappingFragment StoreEntitySet="EditeurBD">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreBDEditees" ColumnName="NombreBDEditees" />
+                </MappingFragment>
+            </EntityTypeMapping><EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurInformatique)">
+              <MappingFragment StoreEntitySet="EditeurInformatique">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreLivresInfoEdites" ColumnName="NombreLivresInfoEdites" />
+              </MappingFragment>
+            </EntityTypeMapping><EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurPsychologie)">
+              <MappingFragment StoreEntitySet="EditeurPsychologie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombrePubliPsyEditees" ColumnName="NombrePubliPsyEditees" />
+                </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Emprunt">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Emprunt)">
+              <MappingFragment StoreEntitySet="Emprunt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exemplaire">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Exemplaire)">
+              <MappingFragment StoreEntitySet="Exemplaire">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateAchat" ColumnName="DateAchat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publication">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Publication)">
+              <MappingFragment StoreEntitySet="Publication">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Article)">
+              <MappingFragment StoreEntitySet="Publication">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <Condition ColumnName="Type" Value="1" /></MappingFragment></EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Livre)">
+              <MappingFragment StoreEntitySet="Publication">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="Type" Value="0" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_Emprunt_Client" TypeName="HelloEntityFramework.FK_Emprunt_Client" StoreEntitySet="Emprunt">
+            <EndProperty Name="Client">
+              <ScalarProperty Name="Id" ColumnName="IdClient" />
+            </EndProperty>
+            <EndProperty Name="Emprunt">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Publication_Editeur" TypeName="HelloEntityFramework.FK_Publication_Editeur" StoreEntitySet="Publication">
+            <EndProperty Name="Editeur">
+              <ScalarProperty Name="Id" ColumnName="IdEditeur" />
+            </EndProperty>
+            <EndProperty Name="Publication">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Emprunt_Exemplaire" TypeName="HelloEntityFramework.FK_Emprunt_Exemplaire" StoreEntitySet="Emprunt">
+            <EndProperty Name="Exemplaire">
+              <ScalarProperty Name="Id" ColumnName="IdExemplaire" />
+            </EndProperty>
+            <EndProperty Name="Emprunt">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Exemplaire_Publication" TypeName="HelloEntityFramework.FK_Exemplaire_Publication" StoreEntitySet="Exemplaire">
+            <EndProperty Name="Publication">
+              <ScalarProperty Name="Id" ColumnName="IdPublication" />
+            </EndProperty>
+            <EndProperty Name="Exemplaire">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Publi_Auteur" TypeName="HelloEntityFramework.Publi_Auteur" StoreEntitySet="Publi_Auteur">
+            <EndProperty Name="Auteur">
+              <ScalarProperty Name="Id" ColumnName="IdAuteur" />
+            </EndProperty>
+            <EndProperty Name="Publication">
+              <ScalarProperty Name="Id" ColumnName="IdPublication" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAuteurs" FunctionName="HelloEntityFramework.Store.GetAuteurs" />
+          <EntitySetMapping Name="VueLivres">
+            <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.VueLivres)">
+              <MappingFragment StoreEntitySet="VueLivres">
+                <ScalarProperty Name="Exemplaires" ColumnName="Exemplaires" />
+                <ScalarProperty Name="Editeur" ColumnName="Editeur" />
+                <ScalarProperty Name="Titre_Livre" ColumnName="Titre Livre" />
+                <ScalarProperty Name="Id_Publication" ColumnName="Id Publication" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="modele" ZoomLevel="98">
+        <EntityTypeShape EntityType="HelloEntityFramework.Auteur" Width="1.5" PointX="13.25" PointY="4.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Client" Width="1.5" PointX="5.375" PointY="7.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Editeur" Width="1.5" PointX="10.25" PointY="7.875" Height="1.5956835937500002" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.EditeurBD" Width="1.875" PointX="12.5" PointY="10.75" Height="1.2110807291666657" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.EditeurInformatique" Width="2.125" PointX="10.125" PointY="10.75" Height="1.2110807291666657" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.EditeurPsychologie" Width="2" PointX="7.875" PointY="10.75" Height="1.2110807291666657" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Emprunt" Width="1.5" PointX="7.625" PointY="7.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Exemplaire" Width="1.5" PointX="7.625" PointY="4.875" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Publication" Width="1.5" PointX="10.25" PointY="4.625" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="HelloEntityFramework.FK_Emprunt_Client" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="8.8651432291666659" />
+          <ConnectorPoint PointX="7.625" PointY="8.8651432291666659" />
+          </AssociationConnector>
+        <AssociationConnector Association="HelloEntityFramework.FK_Publication_Editeur" ManuallyRouted="false">
+          <ConnectorPoint PointX="11" PointY="7.875" />
+          <ConnectorPoint PointX="11" PointY="6.6052864583333326" /></AssociationConnector>
+        <AssociationConnector Association="HelloEntityFramework.FK_Emprunt_Exemplaire" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.375" PointY="6.6629850260416665" />
+          <ConnectorPoint PointX="8.375" PointY="7.875" />
+          </AssociationConnector>
+        <AssociationConnector Association="HelloEntityFramework.FK_Exemplaire_Publication" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.25" PointY="5.7401432291666659" />
+          <ConnectorPoint PointX="9.125" PointY="5.7401432291666659" />
+          </AssociationConnector>
+        <AssociationConnector Association="HelloEntityFramework.Publi_Auteur" ManuallyRouted="false">
+          <ConnectorPoint PointX="13.25" PointY="5.6151432291666659" />
+          <ConnectorPoint PointX="11.75" PointY="5.6151432291666659" />
+          </AssociationConnector>
+        <InheritanceConnector EntityType="HelloEntityFramework.EditeurBD">
+          <ConnectorPoint PointX="11.75" PointY="8.672841796875" />
+          <ConnectorPoint PointX="13.4375" PointY="8.672841796875" />
+          <ConnectorPoint PointX="13.4375" PointY="10.75" /></InheritanceConnector>
+        <EntityTypeShape EntityType="HelloEntityFramework.Livre" Width="1.5" PointX="9.5" PointY="1.875" Height="1.018779296875" />
+        <InheritanceConnector EntityType="HelloEntityFramework.Livre" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.625" PointY="4.625" />
+          <ConnectorPoint PointX="10.625" PointY="2.893779296875" /></InheritanceConnector>
+        <EntityTypeShape EntityType="HelloEntityFramework.Article" Width="1.5" PointX="11.25" PointY="1.875" Height="1.211080729166667" />
+        <InheritanceConnector EntityType="HelloEntityFramework.Article" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.592838127074467" PointY="4.625" />
+          <ConnectorPoint PointX="11.592838127074467" PointY="3.0860807291666679" />
+          </InheritanceConnector>
+        <EntityTypeShape EntityType="HelloEntityFramework.VueLivres" Width="1.5" PointX="5.375" PointY="4.125" Height="1.787985026041667" />
+        </Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

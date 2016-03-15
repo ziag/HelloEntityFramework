@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+  <EntityContainerMapping StorageEntityContainer="HelloEntityFrameworkStoreContainer" CdmEntityContainer="Modele">
+    <EntitySetMapping Name="Auteur">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Auteur)">
+        <MappingFragment StoreEntitySet="Auteur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+        </MappingFragment>
+        <MappingFragment StoreEntitySet="CoordonneesAuteur">
+          <ScalarProperty Name="Id" ColumnName="IdAuteur" />
+          <ScalarProperty Name="TelephoneMobile" ColumnName="TelephoneMobile" />
+          <ScalarProperty Name="TelephoneFixe" ColumnName="TelephoneFixe" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Rue" ColumnName="Rue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Client)">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Rue" ColumnName="Rue" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="HelloEntityFramework.Client">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="HelloEntityFramework.Store.CreerClient">
+            <ScalarProperty Name="Ville" ParameterName="Ville" />
+            <ScalarProperty Name="Telephone" ParameterName="Telephone" />
+            <ScalarProperty Name="CodePostal" ParameterName="CodePostal" />
+            <ScalarProperty Name="Rue" ParameterName="Rue" />
+            <ScalarProperty Name="Pays" ParameterName="Pays" />
+            <ScalarProperty Name="Prenom" ParameterName="Prenom" />
+            <ScalarProperty Name="Nom" ParameterName="Nom" />
+            <ResultBinding Name="Id" ColumnName="Id" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="HelloEntityFramework.Store.MAJClient">
+            <ScalarProperty Name="Ville" ParameterName="Ville" Version="Current" />
+            <ScalarProperty Name="Telephone" ParameterName="Telephone" Version="Current" />
+            <ScalarProperty Name="CodePostal" ParameterName="CodePostal" Version="Current" />
+            <ScalarProperty Name="Rue" ParameterName="Rue" Version="Current" />
+            <ScalarProperty Name="Pays" ParameterName="Pays" Version="Current" />
+            <ScalarProperty Name="Prenom" ParameterName="Prenom" Version="Current" />
+            <ScalarProperty Name="Nom" ParameterName="Nom" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="HelloEntityFramework.Store.SupprimerClient">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Editeur">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Editeur)">
+        <MappingFragment StoreEntitySet="Editeur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurBD)">
+        <MappingFragment StoreEntitySet="EditeurBD">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreBDEditees" ColumnName="NombreBDEditees" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurInformatique)">
+        <MappingFragment StoreEntitySet="EditeurInformatique">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreLivresInfoEdites" ColumnName="NombreLivresInfoEdites" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.EditeurPsychologie)">
+        <MappingFragment StoreEntitySet="EditeurPsychologie">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombrePubliPsyEditees" ColumnName="NombrePubliPsyEditees" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emprunt">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Emprunt)">
+        <MappingFragment StoreEntitySet="Emprunt">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+          <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exemplaire">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Exemplaire)">
+        <MappingFragment StoreEntitySet="Exemplaire">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateAchat" ColumnName="DateAchat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publication">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Publication)">
+        <MappingFragment StoreEntitySet="Publication">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Article)">
+        <MappingFragment StoreEntitySet="Publication">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <Condition ColumnName="Type" Value="1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.Livre)">
+        <MappingFragment StoreEntitySet="Publication">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <Condition ColumnName="Type" Value="0" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_Emprunt_Client" TypeName="HelloEntityFramework.FK_Emprunt_Client" StoreEntitySet="Emprunt">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="IdClient" />
+      </EndProperty>
+      <EndProperty Name="Emprunt">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Publication_Editeur" TypeName="HelloEntityFramework.FK_Publication_Editeur" StoreEntitySet="Publication">
+      <EndProperty Name="Editeur">
+        <ScalarProperty Name="Id" ColumnName="IdEditeur" />
+      </EndProperty>
+      <EndProperty Name="Publication">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Emprunt_Exemplaire" TypeName="HelloEntityFramework.FK_Emprunt_Exemplaire" StoreEntitySet="Emprunt">
+      <EndProperty Name="Exemplaire">
+        <ScalarProperty Name="Id" ColumnName="IdExemplaire" />
+      </EndProperty>
+      <EndProperty Name="Emprunt">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Exemplaire_Publication" TypeName="HelloEntityFramework.FK_Exemplaire_Publication" StoreEntitySet="Exemplaire">
+      <EndProperty Name="Publication">
+        <ScalarProperty Name="Id" ColumnName="IdPublication" />
+      </EndProperty>
+      <EndProperty Name="Exemplaire">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Publi_Auteur" TypeName="HelloEntityFramework.Publi_Auteur" StoreEntitySet="Publi_Auteur">
+      <EndProperty Name="Auteur">
+        <ScalarProperty Name="Id" ColumnName="IdAuteur" />
+      </EndProperty>
+      <EndProperty Name="Publication">
+        <ScalarProperty Name="Id" ColumnName="IdPublication" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="GetAuteurs" FunctionName="HelloEntityFramework.Store.GetAuteurs" />
+    <EntitySetMapping Name="VueLivres">
+      <EntityTypeMapping TypeName="IsTypeOf(HelloEntityFramework.VueLivres)">
+        <MappingFragment StoreEntitySet="VueLivres">
+          <ScalarProperty Name="Exemplaires" ColumnName="Exemplaires" />
+          <ScalarProperty Name="Editeur" ColumnName="Editeur" />
+          <ScalarProperty Name="Titre_Livre" ColumnName="Titre Livre" />
+          <ScalarProperty Name="Id_Publication" ColumnName="Id Publication" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

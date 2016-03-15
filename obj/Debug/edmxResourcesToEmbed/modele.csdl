@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HelloEntityFramework" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+  <EntityContainer Name="Modele">
+    <EntitySet Name="Auteur" EntityType="HelloEntityFramework.Auteur" />
+    <EntitySet Name="Client" EntityType="HelloEntityFramework.Client" />
+    <EntitySet Name="Editeur" EntityType="HelloEntityFramework.Editeur" />
+    <EntitySet Name="Emprunt" EntityType="HelloEntityFramework.Emprunt" />
+    <EntitySet Name="Exemplaire" EntityType="HelloEntityFramework.Exemplaire" />
+    <EntitySet Name="Publication" EntityType="HelloEntityFramework.Publication" />
+    <AssociationSet Name="FK_Emprunt_Client" Association="HelloEntityFramework.FK_Emprunt_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Emprunt" EntitySet="Emprunt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publication_Editeur" Association="HelloEntityFramework.FK_Publication_Editeur">
+      <End Role="Editeur" EntitySet="Editeur" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emprunt_Exemplaire" Association="HelloEntityFramework.FK_Emprunt_Exemplaire">
+      <End Role="Exemplaire" EntitySet="Exemplaire" />
+      <End Role="Emprunt" EntitySet="Emprunt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exemplaire_Publication" Association="HelloEntityFramework.FK_Exemplaire_Publication">
+      <End Role="Publication" EntitySet="Publication" />
+      <End Role="Exemplaire" EntitySet="Exemplaire" />
+    </AssociationSet>
+    <AssociationSet Name="Publi_Auteur" Association="HelloEntityFramework.Publi_Auteur">
+      <End Role="Auteur" EntitySet="Auteur" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
+    <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
+    <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
+  </EntityContainer>
+  <EntityType Name="Auteur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Auteur" ToRole="Publication" />
+    <Property Name="Rue" Type="String" Nullable="true" />
+    <Property Name="Ville" Type="String" Nullable="true" />
+    <Property Name="CodePostal" Type="String" Nullable="true" />
+    <Property Name="TelephoneFixe" Type="String" Nullable="true" />
+    <Property Name="TelephoneMobile" Type="String" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" ConcurrencyMode="Fixed" />
+    <Property Name="Pays" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Rue" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="CodePostal" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="Telephone" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="Ville" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Client" ToRole="Emprunt" />
+  </EntityType>
+  <EntityType Name="Editeur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Publication_Editeur" FromRole="Editeur" ToRole="Publication" />
+  </EntityType>
+  <EntityType Name="EditeurBD" BaseType="HelloEntityFramework.Editeur">
+    <Property Name="NombreBDEditees" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EditeurInformatique" BaseType="HelloEntityFramework.Editeur">
+    <Property Name="NombreLivresInfoEdites" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EditeurPsychologie" BaseType="HelloEntityFramework.Editeur">
+    <Property Name="NombrePubliPsyEditees" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Emprunt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+    <Property Name="DateFin" Type="DateTime" />
+    <NavigationProperty Name="Client" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Emprunt" ToRole="Client" />
+    <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Emprunt" ToRole="Exemplaire" />
+  </EntityType>
+  <EntityType Name="Exemplaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DateAchat" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Exemplaire" ToRole="Emprunt" />
+    <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Exemplaire" ToRole="Publication" />
+  </EntityType>
+  <EntityType Name="Publication" Abstract="true">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Titre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Editeur" Relationship="HelloEntityFramework.FK_Publication_Editeur" FromRole="Publication" ToRole="Editeur" />
+    <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Publication" ToRole="Exemplaire" />
+    <NavigationProperty Name="Auteur" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Publication" ToRole="Auteur" />
+  </EntityType>
+  <Association Name="FK_Emprunt_Client">
+    <End Role="Client" Type="HelloEntityFramework.Client" Multiplicity="1" />
+    <End Role="Emprunt" Type="HelloEntityFramework.Emprunt" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Publication_Editeur">
+    <End Role="Editeur" Type="HelloEntityFramework.Editeur" Multiplicity="1" />
+    <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Emprunt_Exemplaire">
+    <End Role="Exemplaire" Type="HelloEntityFramework.Exemplaire" Multiplicity="1" />
+    <End Role="Emprunt" Type="HelloEntityFramework.Emprunt" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Exemplaire_Publication">
+    <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="1" />
+    <End Role="Exemplaire" Type="HelloEntityFramework.Exemplaire" Multiplicity="*" />
+  </Association>
+  <Association Name="Publi_Auteur">
+    <End Role="Auteur" Type="HelloEntityFramework.Auteur" Multiplicity="*" />
+    <End Role="Publication" Type="HelloEntityFramework.Publication" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Livre" BaseType="HelloEntityFramework.Publication" />
+  <EntityType Name="Article" BaseType="HelloEntityFramework.Publication">
+    <Property Name="Url" Type="String" Nullable="true" />
+  </EntityType>
+  <EntityType Name="VueLivres">
+    <Key>
+      <PropertyRef Name="Id_Publication" />
+    </Key>
+    <Property Name="Id_Publication" Type="Int32" Nullable="false" />
+    <Property Name="Titre_Livre" Type="String" Nullable="true" />
+    <Property Name="Editeur" Type="String" Nullable="true" />
+    <Property Name="Exemplaires" Type="Int32" Nullable="true" />
+  </EntityType>
+</Schema>

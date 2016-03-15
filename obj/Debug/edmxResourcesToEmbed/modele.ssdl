@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HelloEntityFramework.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+  <EntityContainer Name="HelloEntityFrameworkStoreContainer">
+    <EntitySet Name="Auteur" EntityType="HelloEntityFramework.Store.Auteur" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Client" EntityType="HelloEntityFramework.Store.Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CoordonneesAuteur" EntityType="HelloEntityFramework.Store.CoordonneesAuteur" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Editeur" EntityType="HelloEntityFramework.Store.Editeur" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EditeurBD" EntityType="HelloEntityFramework.Store.EditeurBD" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EditeurInformatique" EntityType="HelloEntityFramework.Store.EditeurInformatique" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EditeurPsychologie" EntityType="HelloEntityFramework.Store.EditeurPsychologie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Emprunt" EntityType="HelloEntityFramework.Store.Emprunt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Exemplaire" EntityType="HelloEntityFramework.Store.Exemplaire" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Publi_Auteur" EntityType="HelloEntityFramework.Store.Publi_Auteur" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Publication" EntityType="HelloEntityFramework.Store.Publication" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.Store.VueLivres" store:Type="Views" store:Schema="dbo" store:Name="VueLivres">
+      <DefiningQuery>SELECT 
+      [VueLivres].[Id Publication] AS [Id Publication], 
+      [VueLivres].[Titre Livre] AS [Titre Livre], 
+      [VueLivres].[Editeur] AS [Editeur], 
+      [VueLivres].[Exemplaires] AS [Exemplaires]
+      FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_CoordonneesAuteur_Auteur" Association="HelloEntityFramework.Store.FK_CoordonneesAuteur_Auteur">
+      <End Role="Auteur" EntitySet="Auteur" />
+      <End Role="CoordonneesAuteur" EntitySet="CoordonneesAuteur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emprunt_Client" Association="HelloEntityFramework.Store.FK_Emprunt_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Emprunt" EntitySet="Emprunt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emprunt_Exemplaire" Association="HelloEntityFramework.Store.FK_Emprunt_Exemplaire">
+      <End Role="Exemplaire" EntitySet="Exemplaire" />
+      <End Role="Emprunt" EntitySet="Emprunt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exemplaire_Publication" Association="HelloEntityFramework.Store.FK_Exemplaire_Publication">
+      <End Role="Publication" EntitySet="Publication" />
+      <End Role="Exemplaire" EntitySet="Exemplaire" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publi_Auteur_Auteur" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Auteur">
+      <End Role="Auteur" EntitySet="Auteur" />
+      <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publi_Auteur_Publication" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Publication">
+      <End Role="Publication" EntitySet="Publication" />
+      <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publication_Editeur" Association="HelloEntityFramework.Store.FK_Publication_Editeur">
+      <End Role="Editeur" EntitySet="Editeur" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Auteur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prenom" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prenom" Type="varchar" MaxLength="50" />
+    <Property Name="Pays" Type="varchar" MaxLength="50" />
+    <Property Name="Rue" Type="varchar" MaxLength="100" />
+    <Property Name="CodePostal" Type="char" MaxLength="5" />
+    <Property Name="Telephone" Type="char" MaxLength="10" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CoordonneesAuteur">
+    <Key>
+      <PropertyRef Name="IdAuteur" />
+    </Key>
+    <Property Name="IdAuteur" Type="int" Nullable="false" />
+    <Property Name="Rue" Type="varchar" MaxLength="50" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+    <Property Name="CodePostal" Type="char" MaxLength="5" />
+    <Property Name="TelephoneFixe" Type="char" MaxLength="10" />
+    <Property Name="TelephoneMobile" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Editeur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EditeurBD">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="NombreBDEditees" Type="int" />
+  </EntityType>
+  <EntityType Name="EditeurInformatique">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="NombreLivresInfoEdites" Type="int" />
+  </EntityType>
+  <EntityType Name="EditeurPsychologie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="NombrePubliPsyEditees" Type="int" />
+  </EntityType>
+  <EntityType Name="Emprunt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdClient" Type="int" Nullable="false" />
+    <Property Name="IdExemplaire" Type="int" Nullable="false" />
+    <Property Name="DateDebut" Type="datetime" Nullable="false" />
+    <Property Name="DateFin" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Exemplaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdPublication" Type="int" Nullable="false" />
+    <Property Name="DateAchat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Publi_Auteur">
+    <Key>
+      <PropertyRef Name="IdAuteur" />
+      <PropertyRef Name="IdPublication" />
+    </Key>
+    <Property Name="IdAuteur" Type="int" Nullable="false" />
+    <Property Name="IdPublication" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Publication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdEditeur" Type="int" Nullable="false" />
+    <Property Name="Titre" Type="varchar" MaxLength="50" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Url" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'helloentityfx.dbo.VueLivres' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="VueLivres">
+    <Key>
+      <PropertyRef Name="Id Publication" />
+    </Key>
+    <Property Name="Id Publication" Type="int" Nullable="false" />
+    <Property Name="Titre Livre" Type="varchar" MaxLength="50" />
+    <Property Name="Editeur" Type="varchar" MaxLength="50" />
+    <Property Name="Exemplaires" Type="int" />
+  </EntityType>
+  <Association Name="FK_CoordonneesAuteur_Auteur">
+    <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
+    <End Role="CoordonneesAuteur" Type="HelloEntityFramework.Store.CoordonneesAuteur" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Auteur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CoordonneesAuteur">
+        <PropertyRef Name="IdAuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emprunt_Client">
+    <End Role="Client" Type="HelloEntityFramework.Store.Client" Multiplicity="1" />
+    <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Emprunt">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emprunt_Exemplaire">
+    <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="1" />
+    <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exemplaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Emprunt">
+        <PropertyRef Name="IdExemplaire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exemplaire_Publication">
+    <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
+    <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exemplaire">
+        <PropertyRef Name="IdPublication" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publi_Auteur_Auteur">
+    <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
+    <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auteur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Publi_Auteur">
+        <PropertyRef Name="IdAuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publi_Auteur_Publication">
+    <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
+    <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Publi_Auteur">
+        <PropertyRef Name="IdPublication" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publication_Editeur">
+    <End Role="Editeur" Type="HelloEntityFramework.Store.Editeur" Multiplicity="1" />
+    <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editeur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Publication">
+        <PropertyRef Name="IdEditeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreerClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nom" Type="varchar" Mode="In" />
+    <Parameter Name="Prenom" Type="varchar" Mode="In" />
+    <Parameter Name="Pays" Type="varchar" Mode="In" />
+    <Parameter Name="Rue" Type="varchar" Mode="In" />
+    <Parameter Name="CodePostal" Type="char" Mode="In" />
+    <Parameter Name="Telephone" Type="char" Mode="In" />
+    <Parameter Name="Ville" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetAuteurs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MAJClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Nom" Type="varchar" Mode="In" />
+    <Parameter Name="Prenom" Type="varchar" Mode="In" />
+    <Parameter Name="Pays" Type="varchar" Mode="In" />
+    <Parameter Name="Rue" Type="varchar" Mode="In" />
+    <Parameter Name="CodePostal" Type="char" Mode="In" />
+    <Parameter Name="Telephone" Type="char" Mode="In" />
+    <Parameter Name="Ville" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SupprimerClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+</Schema>

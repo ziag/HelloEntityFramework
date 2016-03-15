@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Client xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EntityKey>
+    <EntitySetName>Client</EntitySetName>
+    <EntityContainerName>Modele</EntityContainerName>
+    <EntityKeyValues>
+      <EntityKeyMember>
+        <Key>Id</Key>
+        <Value xsi:type="xsd:int">1</Value>
+      </EntityKeyMember>
+    </EntityKeyValues>
+  </EntityKey>
+  <Id>1</Id>
+  <Nom>Barthelemy</Nom>
+  <Prenom>Pacha</Prenom>
+  <Pays>France</Pays>
+  <Rue>77 avenue de la gamelle</Rue>
+  <CodePostal>31010</CodePostal>
+  <Telephone>0628054512</Telephone>
+  <Ville>FishyVille</Ville>
+</Client>
