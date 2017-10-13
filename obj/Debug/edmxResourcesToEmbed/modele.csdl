@@ -29,6 +29,7 @@
     </AssociationSet>
     <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
     <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
+    <EntitySet Name="Numero" EntityType="HelloEntityFramework.Numero" />
   </EntityContainer>
   <EntityType Name="Auteur">
     <Key>
@@ -38,11 +39,11 @@
     <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Auteur" ToRole="Publication" />
-    <Property Name="Rue" Type="String" Nullable="true" />
-    <Property Name="Ville" Type="String" Nullable="true" />
-    <Property Name="CodePostal" Type="String" Nullable="true" />
-    <Property Name="TelephoneFixe" Type="String" Nullable="true" />
-    <Property Name="TelephoneMobile" Type="String" Nullable="true" />
+    <Property Name="Rue" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Ville" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CodePostal" Type="String" Nullable="true" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="TelephoneFixe" Type="String" Nullable="true" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="TelephoneMobile" Type="String" Nullable="true" MaxLength="10" Unicode="false" FixedLength="true" />
   </EntityType>
   <EntityType Name="Client">
     <Key>
@@ -80,8 +81,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="DateDebut" Type="DateTime" Nullable="false" />
-    <Property Name="DateFin" Type="DateTime" />
+    <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Client" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Emprunt" ToRole="Client" />
     <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Emprunt" ToRole="Exemplaire" />
   </EntityType>
@@ -90,7 +91,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="DateAchat" Type="DateTime" Nullable="false" />
+    <Property Name="DateAchat" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Exemplaire" ToRole="Emprunt" />
     <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Exemplaire" ToRole="Publication" />
   </EntityType>
@@ -126,15 +127,24 @@
   </Association>
   <EntityType Name="Livre" BaseType="HelloEntityFramework.Publication" />
   <EntityType Name="Article" BaseType="HelloEntityFramework.Publication">
-    <Property Name="Url" Type="String" Nullable="true" />
+    <Property Name="Url" Type="String" Nullable="true" MaxLength="255" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="VueLivres">
     <Key>
       <PropertyRef Name="Id_Publication" />
     </Key>
     <Property Name="Id_Publication" Type="Int32" Nullable="false" />
-    <Property Name="Titre_Livre" Type="String" Nullable="true" />
-    <Property Name="Editeur" Type="String" Nullable="true" />
+    <Property Name="Titre_Livre" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Editeur" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Exemplaires" Type="Int32" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Numero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+    <Property Name="IDx" Type="Int32" />
+    <Property Name="ipn" Type="Int32" />
+    <Property Name="EntityID" Type="Int32" />
   </EntityType>
 </Schema>

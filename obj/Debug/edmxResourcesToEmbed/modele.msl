@@ -174,5 +174,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Numero">
+      <EntityTypeMapping TypeName="HelloEntityFramework.Numero">
+        <MappingFragment StoreEntitySet="Numero">
+          <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+          <ScalarProperty Name="ipn" ColumnName="ipn" />
+          <ScalarProperty Name="IDx" ColumnName="IDx" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

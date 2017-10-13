@@ -26,9 +26,10 @@ namespace HelloEntityFramework
         static void Main(string[] args)
         {
             // Exemples de Selection (SQL : SELECT)
-         //   SelectLinQ();
+            SelectLinQ();
             SelectQueryBuilder();
             SelectEntitySQL();
+            SelectEntitySQL_ID_IPN();
             SelectEtWhereLinQ();
 
             SelectAvecInclude();
@@ -101,7 +102,7 @@ namespace HelloEntityFramework
                               select publication;
 
                 // Execution de la requête
-                Console.WriteLine(((ObjectQuery<Publication>)requete).ToTraceString());
+                //Console.WriteLine(((ObjectQuery<Publication>)requete).ToTraceString());
                 requete.ToList().ForEach(p => Console.WriteLine("Publication : ID = {0} | Titre = {1}", p.Id, p.Titre));
             }
 
@@ -123,6 +124,26 @@ namespace HelloEntityFramework
 
                 // Execution de la requête Entity SQL
                 requete.ToList().ForEach(p => Console.WriteLine("Publication : ID = {0} | Titre = {1}", p.Id, p.Titre));
+            }
+
+            FinExemple();
+        }
+
+        public static void SelectEntitySQL_ID_IPN()
+        {
+            CartoucheExemple("Select avec Entity SQL ID IPN");
+
+            // Initialisation du contexte
+            using (Modele bdd = new Modele())
+            {
+                // Définition de la requête avec Entity SQL
+                string chaineRequete = "SELECT VALUE n FROM Numero AS n";
+
+                // Définition de la requête de type ObjectQuery<ArtistiID_IPN>
+                ObjectQuery<Numero> requete = new ObjectQuery<Numero>(chaineRequete, bdd, MergeOption.NoTracking).Top("10");
+
+                // Execution de la requête Entity SQL
+                requete.ToList().ForEach(n => Console.WriteLine("Numéro : id = {0} | IDx = {1} | IPN = {2}", n.id, n.IDx, n.ipn));
             }
 
             FinExemple();

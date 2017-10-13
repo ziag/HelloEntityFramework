@@ -4,61 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HelloEntityFramework.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="HelloEntityFrameworkStoreContainer">
-          <EntitySet Name="Auteur" EntityType="HelloEntityFramework.Store.Auteur" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Client" EntityType="HelloEntityFramework.Store.Client" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CoordonneesAuteur" EntityType="HelloEntityFramework.Store.CoordonneesAuteur" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Editeur" EntityType="HelloEntityFramework.Store.Editeur" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EditeurBD" EntityType="HelloEntityFramework.Store.EditeurBD" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EditeurInformatique" EntityType="HelloEntityFramework.Store.EditeurInformatique" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EditeurPsychologie" EntityType="HelloEntityFramework.Store.EditeurPsychologie" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Emprunt" EntityType="HelloEntityFramework.Store.Emprunt" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Exemplaire" EntityType="HelloEntityFramework.Store.Exemplaire" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Publi_Auteur" EntityType="HelloEntityFramework.Store.Publi_Auteur" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Publication" EntityType="HelloEntityFramework.Store.Publication" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.Store.VueLivres" store:Type="Views" store:Schema="dbo" store:Name="VueLivres">
-            <DefiningQuery>SELECT [VueLivres].[Id Publication] AS [Id Publication], 
-                                  [VueLivres].[Titre Livre] AS [Titre Livre], 
-                                  [VueLivres].[Editeur] AS [Editeur], 
-                                  [VueLivres].[Exemplaires] AS [Exemplaires]
-                           FROM [dbo].[VueLivres] AS [VueLivres]
-            </DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_CoordonneesAuteur_Auteur" Association="HelloEntityFramework.Store.FK_CoordonneesAuteur_Auteur">
-            <End Role="Auteur" EntitySet="Auteur" />
-            <End Role="CoordonneesAuteur" EntitySet="CoordonneesAuteur" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Emprunt_Client" Association="HelloEntityFramework.Store.FK_Emprunt_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Emprunt" EntitySet="Emprunt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Emprunt_Exemplaire" Association="HelloEntityFramework.Store.FK_Emprunt_Exemplaire">
-            <End Role="Exemplaire" EntitySet="Exemplaire" />
-            <End Role="Emprunt" EntitySet="Emprunt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exemplaire_Publication" Association="HelloEntityFramework.Store.FK_Exemplaire_Publication">
-            <End Role="Publication" EntitySet="Publication" />
-            <End Role="Exemplaire" EntitySet="Exemplaire" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Publi_Auteur_Auteur" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Auteur">
-            <End Role="Auteur" EntitySet="Auteur" />
-            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Publi_Auteur_Publication" Association="HelloEntityFramework.Store.FK_Publi_Auteur_Publication">
-            <End Role="Publication" EntitySet="Publication" />
-            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Publication_Editeur" Association="HelloEntityFramework.Store.FK_Publication_Editeur">
-            <End Role="Editeur" EntitySet="Editeur" />
-            <End Role="Publication" EntitySet="Publication" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="HelloEntityFramework.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityType Name="Auteur">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="Prenom" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -66,7 +17,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="Prenom" Type="varchar" MaxLength="50" />
           <Property Name="Pays" Type="varchar" MaxLength="50" />
@@ -90,7 +41,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EditeurBD">
@@ -118,7 +69,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdClient" Type="int" Nullable="false" />
           <Property Name="IdExemplaire" Type="int" Nullable="false" />
           <Property Name="DateDebut" Type="datetime" Nullable="false" />
@@ -128,9 +79,20 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPublication" Type="int" Nullable="false" />
           <Property Name="DateAchat" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'maintenanceDB.dbo.Numero' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Numero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDx" Type="int" />
+          <Property Name="ipn" Type="int" />
+          <Property Name="EntityID" Type="int" />
         </EntityType>
         <EntityType Name="Publi_Auteur">
           <Key>
@@ -144,15 +106,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdEditeur" Type="int" Nullable="false" />
           <Property Name="Titre" Type="varchar" MaxLength="50" />
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Url" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'helloentityfx.dbo.VueLivres' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'maintenanceDB.dbo.VueLivres' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="VueLivres">
           <Key>
             <PropertyRef Name="Id Publication" />
@@ -163,8 +124,8 @@
           <Property Name="Exemplaires" Type="int" />
         </EntityType>
         <Association Name="FK_CoordonneesAuteur_Auteur">
-          <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
-          <End Role="CoordonneesAuteur" Type="HelloEntityFramework.Store.CoordonneesAuteur" Multiplicity="0..1" />
+          <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
+          <End Role="CoordonneesAuteur" Type="Self.CoordonneesAuteur" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Auteur">
               <PropertyRef Name="Id" />
@@ -175,8 +136,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Emprunt_Client">
-          <End Role="Client" Type="HelloEntityFramework.Store.Client" Multiplicity="1" />
-          <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Emprunt" Type="Self.Emprunt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
@@ -187,8 +148,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Emprunt_Exemplaire">
-          <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="1" />
-          <End Role="Emprunt" Type="HelloEntityFramework.Store.Emprunt" Multiplicity="*" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="1" />
+          <End Role="Emprunt" Type="Self.Emprunt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exemplaire">
               <PropertyRef Name="Id" />
@@ -199,8 +160,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Exemplaire_Publication">
-          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
-          <End Role="Exemplaire" Type="HelloEntityFramework.Store.Exemplaire" Multiplicity="*" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publication">
               <PropertyRef Name="Id" />
@@ -211,8 +172,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Publi_Auteur_Auteur">
-          <End Role="Auteur" Type="HelloEntityFramework.Store.Auteur" Multiplicity="1" />
-          <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+          <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
+          <End Role="Publi_Auteur" Type="Self.Publi_Auteur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Auteur">
               <PropertyRef Name="Id" />
@@ -223,8 +184,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Publi_Auteur_Publication">
-          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="1" />
-          <End Role="Publi_Auteur" Type="HelloEntityFramework.Store.Publi_Auteur" Multiplicity="*" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Publi_Auteur" Type="Self.Publi_Auteur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publication">
               <PropertyRef Name="Id" />
@@ -235,8 +196,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Publication_Editeur">
-          <End Role="Editeur" Type="HelloEntityFramework.Store.Editeur" Multiplicity="1" />
-          <End Role="Publication" Type="HelloEntityFramework.Store.Publication" Multiplicity="*" />
+          <End Role="Editeur" Type="Self.Editeur" Multiplicity="1" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editeur">
               <PropertyRef Name="Id" />
@@ -269,6 +230,63 @@
         <Function Name="SupprimerClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <EntityContainer Name="HelloEntityFrameworkStoreContainer">
+          <EntitySet Name="Auteur" EntityType="Self.Auteur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoordonneesAuteur" EntityType="Self.CoordonneesAuteur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editeur" EntityType="Self.Editeur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EditeurBD" EntityType="Self.EditeurBD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EditeurInformatique" EntityType="Self.EditeurInformatique" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EditeurPsychologie" EntityType="Self.EditeurPsychologie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emprunt" EntityType="Self.Emprunt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exemplaire" EntityType="Self.Exemplaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publi_Auteur" EntityType="Self.Publi_Auteur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publication" EntityType="Self.Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Numero" EntityType="Self.Numero" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Numero].[id] AS [id], 
+[Numero].[IDx] AS [IDx], 
+[Numero].[ipn] AS [ipn], 
+[Numero].[EntityID] AS [EntityID]
+FROM [dbo].[Numero] AS [Numero]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VueLivres" EntityType="Self.VueLivres" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VueLivres].[Id Publication] AS [Id Publication], 
+[VueLivres].[Titre Livre] AS [Titre Livre], 
+[VueLivres].[Editeur] AS [Editeur], 
+[VueLivres].[Exemplaires] AS [Exemplaires]
+FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CoordonneesAuteur_Auteur" Association="Self.FK_CoordonneesAuteur_Auteur">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="CoordonneesAuteur" EntitySet="CoordonneesAuteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprunt_Client" Association="Self.FK_Emprunt_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprunt_Exemplaire" Association="Self.FK_Emprunt_Exemplaire">
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+            <End Role="Emprunt" EntitySet="Emprunt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exemplaire_Publication" Association="Self.FK_Exemplaire_Publication">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publi_Auteur_Auteur" Association="Self.FK_Publi_Auteur_Auteur">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publi_Auteur_Publication" Association="Self.FK_Publi_Auteur_Publication">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Publi_Auteur" EntitySet="Publi_Auteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publication_Editeur" Association="Self.FK_Publication_Editeur">
+            <End Role="Editeur" EntitySet="Editeur" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -302,6 +320,7 @@
           </AssociationSet>
           <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
           <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
+          <EntitySet Name="Numero" EntityType="HelloEntityFramework.Numero" />
           </EntityContainer>
         <EntityType Name="Auteur">
           <Key>
@@ -311,11 +330,11 @@
           <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.Publi_Auteur" FromRole="Auteur" ToRole="Publication" />
-          <Property Name="Rue" Type="String" Nullable="true" />
-          <Property Name="Ville" Type="String" Nullable="true" />
-          <Property Name="CodePostal" Type="String" Nullable="true" />
-          <Property Name="TelephoneFixe" Type="String" Nullable="true" />
-          <Property Name="TelephoneMobile" Type="String" Nullable="true" /></EntityType>
+          <Property Name="Rue" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Ville" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CodePostal" Type="String" Nullable="true" MaxLength="5" Unicode="false" FixedLength="true" />
+          <Property Name="TelephoneFixe" Type="String" Nullable="true" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="TelephoneMobile" Type="String" Nullable="true" MaxLength="10" Unicode="false" FixedLength="true" /></EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -352,8 +371,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
-          <Property Name="DateFin" Type="DateTime" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="HelloEntityFramework.FK_Emprunt_Client" FromRole="Emprunt" ToRole="Client" />
           <NavigationProperty Name="Exemplaire" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Emprunt" ToRole="Exemplaire" />
         </EntityType>
@@ -362,7 +381,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="DateAchat" Type="DateTime" Nullable="false" />
+          <Property Name="DateAchat" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Emprunt" Relationship="HelloEntityFramework.FK_Emprunt_Exemplaire" FromRole="Exemplaire" ToRole="Emprunt" />
           <NavigationProperty Name="Publication" Relationship="HelloEntityFramework.FK_Exemplaire_Publication" FromRole="Exemplaire" ToRole="Publication" />
         </EntityType>
@@ -398,14 +417,23 @@
         </Association>
         <EntityType Name="Livre" BaseType="HelloEntityFramework.Publication" />
         <EntityType Name="Article" BaseType="HelloEntityFramework.Publication" >
-          <Property Name="Url" Type="String" Nullable="true" /></EntityType>
+          <Property Name="Url" Type="String" Nullable="true" MaxLength="255" Unicode="false" FixedLength="false" /></EntityType>
         <EntityType Name="VueLivres">
           <Key>
             <PropertyRef Name="Id_Publication" /></Key>
           <Property Name="Id_Publication" Type="Int32" Nullable="false" />
-          <Property Name="Titre_Livre" Type="String" Nullable="true" />
-          <Property Name="Editeur" Type="String" Nullable="true" />
+          <Property Name="Titre_Livre" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Editeur" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Exemplaires" Type="Int32" Nullable="true" /></EntityType>
+        <EntityType Name="Numero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="IDx" Type="Int32" />
+          <Property Name="ipn" Type="Int32" />
+          <Property Name="EntityID" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -568,6 +596,16 @@
                 <ScalarProperty Name="Editeur" ColumnName="Editeur" />
                 <ScalarProperty Name="Titre_Livre" ColumnName="Titre Livre" />
                 <ScalarProperty Name="Id_Publication" ColumnName="Id Publication" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Numero">
+            <EntityTypeMapping TypeName="HelloEntityFramework.Numero">
+              <MappingFragment StoreEntitySet="Numero">
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+                <ScalarProperty Name="ipn" ColumnName="ipn" />
+                <ScalarProperty Name="IDx" ColumnName="IDx" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -582,6 +620,9 @@
     <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -629,6 +670,7 @@
           <ConnectorPoint PointX="11.592838127074467" PointY="3.0860807291666679" />
           </InheritanceConnector>
         <EntityTypeShape EntityType="HelloEntityFramework.VueLivres" Width="1.5" PointX="5.375" PointY="4.125" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="HelloEntityFramework.Numero" Width="1.5" PointX="4.625" PointY="0.5" />
         </Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -1,0 +1,52 @@
+
+/****** Object:  Table [dbo].[ArtistiID_IPN]    Script Date: 2017-10-13 13:42:51 ******/
+IF OBJECT_ID (N'Numero', N'U') IS NOT NULL 
+DROP TABLE [dbo].[ArtistiID_IPN];
+GO
+
+/****** Object:  Table [dbo].[ArtistiID_IPN]    Script Date: 2017-10-13 13:42:51 ******/
+SET ANSI_NULLS ON;
+GO
+
+SET QUOTED_IDENTIFIER ON;
+GO
+
+CREATE TABLE [dbo].[Numero](
+	[id] [int] IDENTITY(1,1) NOT NULL,	
+	[IDx] [int] NULL,
+	[ipn] [int] NULL,	
+	[EntityID] [int] NULL
+);
+GO
+
+
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210763,	10562829);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (214692,	10560958);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210713,	10560959);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210723,	10560960);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209448,	10560961);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209095,	10560962);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210783,	10560963);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210851,	10562830);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (210801,	10560964);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (214432,	10560965);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209365,	10560966);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209375,	10560967);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209305,	10560968);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209325,	10560969);
+INSERT INTO Numero (IDx, ipn) 
+VALUES (209335,	10562831); 
