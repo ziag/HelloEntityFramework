@@ -7,3 +7,9 @@ C:\Users\Simon\Desktop\HelloEntityFramework\HelloEntityFramework\obj\Debug\Hello
 C:\Users\Simon\Documents\GitHub\HelloEntityFramework\HelloEntityFramework\bin\Debug\HelloEntityFramework.exe.config
 C:\Users\Simon\Documents\GitHub\HelloEntityFramework\HelloEntityFramework\obj\Debug\HelloEntityFramework.exe
 C:\Users\Simon\Documents\GitHub\HelloEntityFramework\HelloEntityFramework\obj\Debug\HelloEntityFramework.pdb
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\bin\Debug\HelloEntityFramework.exe.config
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\obj\Debug\HelloEntityFramework.exe
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\obj\Debug\HelloEntityFramework.pdb
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\bin\Debug\HelloEntityFramework.exe
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\bin\Debug\HelloEntityFramework.pdb
+C:\Users\shuard\Documents\GitHub\HelloEntityFramework\obj\Debug\HelloEntityFramework.csprojResolveAssemblyReference.cache

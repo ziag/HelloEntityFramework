@@ -13,12 +13,12 @@
     <EntitySet Name="Publi_Auteur" EntityType="HelloEntityFramework.Store.Publi_Auteur" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Publication" EntityType="HelloEntityFramework.Store.Publication" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.Store.VueLivres" store:Type="Views" store:Schema="dbo" store:Name="VueLivres">
-      <DefiningQuery>SELECT 
-      [VueLivres].[Id Publication] AS [Id Publication], 
-      [VueLivres].[Titre Livre] AS [Titre Livre], 
-      [VueLivres].[Editeur] AS [Editeur], 
-      [VueLivres].[Exemplaires] AS [Exemplaires]
-      FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
+      <DefiningQuery>SELECT [VueLivres].[Id Publication] AS [Id Publication], 
+                                  [VueLivres].[Titre Livre] AS [Titre Livre], 
+                                  [VueLivres].[Editeur] AS [Editeur], 
+                                  [VueLivres].[Exemplaires] AS [Exemplaires]
+                           FROM [dbo].[VueLivres] AS [VueLivres]
+            </DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_CoordonneesAuteur_Auteur" Association="HelloEntityFramework.Store.FK_CoordonneesAuteur_Auteur">
       <End Role="Auteur" EntitySet="Auteur" />

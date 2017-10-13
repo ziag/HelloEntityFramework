@@ -26,7 +26,7 @@ namespace HelloEntityFramework
         static void Main(string[] args)
         {
             // Exemples de Selection (SQL : SELECT)
-            SelectLinQ();
+         //   SelectLinQ();
             SelectQueryBuilder();
             SelectEntitySQL();
             SelectEtWhereLinQ();
@@ -57,6 +57,7 @@ namespace HelloEntityFramework
             UndoMiseAJourEntité();
             RefreshEntité();
             Transaction();
+            DeleteTransaction();
 
             // Exemples de serialisation
             SerialisationXML();
@@ -157,7 +158,7 @@ namespace HelloEntityFramework
                 {
                     Console.WriteLine("Publication : ID = {0} | Titre = {1}", p.Id, p.Titre);
 
-                    Console.WriteLine("     Editeur : ID = {0} | Nom = {1}", p.Editeur.Id, p.Editeur.Nom);
+                    Console.WriteLine("    Editeur : ID = {0} | Nom = {1}", p.Editeur.Id, p.Editeur.Nom);
 
                     p.Auteur.ToList().ForEach(a => Console.WriteLine("     Auteur : ID = {0} | Nom = {1} {2}", a.Id, a.Prenom, a.Nom));
                 });
@@ -182,7 +183,7 @@ namespace HelloEntityFramework
                     if (!p.EditeurReference.IsLoaded)
                         p.EditeurReference.Load();
 
-                    Console.WriteLine("     Editeur : ID = {0} | Nom = {1}", p.Editeur.Id, p.Editeur.Nom);
+                    Console.WriteLine("    Editeur : ID = {0} | Nom = {1}", p.Editeur.Id, p.Editeur.Nom);
 
                     if (!p.Auteur.IsLoaded)
                         p.Auteur.Load();
@@ -520,8 +521,8 @@ namespace HelloEntityFramework
         }
 
         private static void simulerAccesConcurrentiel(string pDataSource)
-        {
-            using (SqlConnection connexion = new SqlConnection("Data Source=" + pDataSource + ";Initial Catalog=helloentityfx;Integrated Security=SSPI;"))
+        {   // helloentityfx
+            using (SqlConnection connexion = new SqlConnection("Data Source=" + pDataSource + ";Initial Catalog=maintenanceDB;Integrated Security=SSPI;"))
             {
                 connexion.Open();
 
@@ -573,6 +574,33 @@ namespace HelloEntityFramework
             FinExemple();
         }
 
+        public static void DeleteTransaction()
+        {
+            CartoucheExemple("Suppression de la transaction");
+
+            using (Modele bdd = new Modele())
+            {
+                var requete = from c in bdd.Client
+                              where c.Prenom == "Paul"
+                              select c;
+
+                //var client = requete.First();
+
+                var clients = requete.ToList();
+                 
+                foreach (var client in clients)
+                {
+                    if (client != null)
+                    {
+                        bdd.DeleteObject(client);
+                        bdd.SaveChanges();
+                    }
+                    
+                }                 
+            }
+
+            FinExemple();
+        }
         #endregion
 
 
