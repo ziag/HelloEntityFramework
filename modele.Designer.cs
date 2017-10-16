@@ -16,7 +16,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("HelloEntityFramework", "Publi_Auteur", "Auteur", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HelloEntityFramework.Auteur), "Publication", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HelloEntityFramework.Publication))]
 
 // Nom du fichier d'origine :
-// Date de génération : 2017-10-13 14:22:14
+// Date de génération : 2017-10-16 13:29:10
 namespace HelloEntityFramework
 {
     
@@ -187,6 +187,23 @@ namespace HelloEntityFramework
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<Numero> _Numero;
         /// <summary>
+        /// Il n'existe aucun commentaire pour vClientNumero dans le schéma.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<vClientNumero> vClientNumero
+        {
+            get
+            {
+                if ((this._vClientNumero == null))
+                {
+                    this._vClientNumero = base.CreateQuery<vClientNumero>("[vClientNumero]");
+                }
+                return this._vClientNumero;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<vClientNumero> _vClientNumero;
+        /// <summary>
         /// Il n'existe aucun commentaire pour Auteur dans le schéma.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
@@ -249,6 +266,14 @@ namespace HelloEntityFramework
         public void AddToNumero(Numero numero)
         {
             base.AddObject("Numero", numero);
+        }
+        /// <summary>
+        /// Il n'existe aucun commentaire pour vClientNumero dans le schéma.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddTovClientNumero(vClientNumero vClientNumero)
+        {
+            base.AddObject("vClientNumero", vClientNumero);
         }
         /// <summary>
         /// Il n'existe aucun commentaire pour Modele.GetAuteurs dans le schéma.
@@ -1842,5 +1867,163 @@ namespace HelloEntityFramework
         partial void OnEntityIDChanging(global::System.Nullable<int> value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnEntityIDChanged();
+    }
+    /// <summary>
+    /// Il n'existe aucun commentaire pour HelloEntityFramework.vClientNumero dans le schéma.
+    /// </summary>
+    /// <KeyProperties>
+    /// id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="HelloEntityFramework", Name="vClientNumero")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class vClientNumero : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Créez un nouvel objet vClientNumero.
+        /// </summary>
+        /// <param name="id">Valeur initiale de id.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static vClientNumero CreatevClientNumero(int id)
+        {
+            vClientNumero vClientNumero = new vClientNumero();
+            vClientNumero.id = id;
+            return vClientNumero;
+        }
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété id dans le schéma.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                this.OnidChanging(value);
+                this.ReportPropertyChanging("id");
+                this._id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("id");
+                this.OnidChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _id;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnidChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnidChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété IDx dans le schéma.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Nullable<int> IDx
+        {
+            get
+            {
+                return this._IDx;
+            }
+            set
+            {
+                this.OnIDxChanging(value);
+                this.ReportPropertyChanging("IDx");
+                this._IDx = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IDx");
+                this.OnIDxChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Nullable<int> _IDx;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIDxChanging(global::System.Nullable<int> value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIDxChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété ipn dans le schéma.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Nullable<int> ipn
+        {
+            get
+            {
+                return this._ipn;
+            }
+            set
+            {
+                this.OnipnChanging(value);
+                this.ReportPropertyChanging("ipn");
+                this._ipn = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ipn");
+                this.OnipnChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Nullable<int> _ipn;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnipnChanging(global::System.Nullable<int> value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnipnChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété Nom dans le schéma.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string Nom
+        {
+            get
+            {
+                return this._Nom;
+            }
+            set
+            {
+                this.OnNomChanging(value);
+                this.ReportPropertyChanging("Nom");
+                this._Nom = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Nom");
+                this.OnNomChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _Nom;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnNomChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnNomChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété Prenom dans le schéma.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string Prenom
+        {
+            get
+            {
+                return this._Prenom;
+            }
+            set
+            {
+                this.OnPrenomChanging(value);
+                this.ReportPropertyChanging("Prenom");
+                this._Prenom = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Prenom");
+                this.OnPrenomChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _Prenom;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnPrenomChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnPrenomChanged();
     }
 }

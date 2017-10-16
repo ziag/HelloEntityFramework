@@ -113,6 +113,18 @@ avertissement 6002: La table/vue 'maintenanceDB.dbo.Numero' n'a pas de clé prim
           <Property Name="Url" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'maintenanceDB.dbo.vClientNumero' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="vClientNumero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="IDx" Type="int" />
+          <Property Name="ipn" Type="int" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'maintenanceDB.dbo.VueLivres' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="VueLivres">
           <Key>
@@ -250,6 +262,15 @@ avertissement 6002: La table/vue 'maintenanceDB.dbo.VueLivres' n'a pas de clé p
 [Numero].[EntityID] AS [EntityID]
 FROM [dbo].[Numero] AS [Numero]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vClientNumero" EntityType="Self.vClientNumero" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vClientNumero].[id] AS [id], 
+[vClientNumero].[IDx] AS [IDx], 
+[vClientNumero].[ipn] AS [ipn], 
+[vClientNumero].[Nom] AS [Nom], 
+[vClientNumero].[Prenom] AS [Prenom]
+FROM [dbo].[vClientNumero] AS [vClientNumero]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VueLivres" EntityType="Self.VueLivres" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [VueLivres].[Id Publication] AS [Id Publication], 
@@ -321,6 +342,7 @@ FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
           <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
           <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
           <EntitySet Name="Numero" EntityType="HelloEntityFramework.Numero" />
+          <EntitySet Name="vClientNumero" EntityType="HelloEntityFramework.vClientNumero" />
           </EntityContainer>
         <EntityType Name="Auteur">
           <Key>
@@ -433,6 +455,16 @@ FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
           <Property Name="IDx" Type="Int32" />
           <Property Name="ipn" Type="Int32" />
           <Property Name="EntityID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vClientNumero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="IDx" Type="Int32" />
+          <Property Name="ipn" Type="Int32" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -606,6 +638,17 @@ FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vClientNumero">
+            <EntityTypeMapping TypeName="HelloEntityFramework.vClientNumero">
+              <MappingFragment StoreEntitySet="vClientNumero">
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="ipn" ColumnName="ipn" />
+                <ScalarProperty Name="IDx" ColumnName="IDx" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -671,6 +714,7 @@ FROM [dbo].[VueLivres] AS [VueLivres]</DefiningQuery>
           </InheritanceConnector>
         <EntityTypeShape EntityType="HelloEntityFramework.VueLivres" Width="1.5" PointX="5.375" PointY="4.125" Height="1.787985026041667" />
         <EntityTypeShape EntityType="HelloEntityFramework.Numero" Width="1.5" PointX="4.625" PointY="0.5" />
+        <EntityTypeShape EntityType="HelloEntityFramework.vClientNumero" Width="1.5" PointX="6.625" PointY="0.5" />
         </Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
