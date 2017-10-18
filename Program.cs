@@ -512,9 +512,9 @@ namespace HelloEntityFramework
         public static void RefreshEntité()
         {
             CartoucheExemple("Récupérer une entité en cas de conflit (Accès concurrentiel)");
-            
+
             using (Modele bdd = new Modele())
-            {                
+            {
                 Client client = null;
                 try
                 {
@@ -531,7 +531,7 @@ namespace HelloEntityFramework
                 }
                 catch (OptimisticConcurrencyException exp)
                 {
-                    Console.WriteLine("Conflit détecté. Message : {0}", exp.Message); 
+                    Console.WriteLine("Conflit détecté. Message : {0}", exp.Message);
 
                     bdd.Refresh(RefreshMode.StoreWins, client);
                     bdd.SaveChanges();
@@ -548,11 +548,11 @@ namespace HelloEntityFramework
                 connexion.Open();
 
                 string strCmd = "UPDATE Client SET Prenom = 'Johnny' WHERE Nom = 'Oliver'";
-                SqlCommand command = new SqlCommand(strCmd,connexion);
+                SqlCommand command = new SqlCommand(strCmd, connexion);
                 command.ExecuteNonQuery();
 
                 connexion.Close();
-            }            
+            }
         }
 
         #endregion
@@ -588,7 +588,7 @@ namespace HelloEntityFramework
                         nbEssai--;
                     }
                 }
-                if ( transactionExecutee )
+                if (transactionExecutee)
                     bdd.AcceptAllChanges();
             }
 
@@ -608,7 +608,7 @@ namespace HelloEntityFramework
                 //var client = requete.First();
 
                 var clients = requete.ToList();
-                 
+
                 foreach (var client in clients)
                 {
                     if (client != null)
@@ -616,8 +616,8 @@ namespace HelloEntityFramework
                         bdd.DeleteObject(client);
                         bdd.SaveChanges();
                     }
-                    
-                }                 
+
+                }
             }
 
             FinExemple();
