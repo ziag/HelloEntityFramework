@@ -30,6 +30,6 @@ namespace HelloEntityFramework
             strBuilder.Append("Prenom = ");
             strBuilder.Append(Prenom);
             return strBuilder.ToString();
-        }      
+        }
     }
 }
