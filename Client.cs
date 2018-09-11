@@ -6,7 +6,7 @@ using System.Text;
 namespace HelloEntityFramework
 {
     public partial class Client
-    {
+    {   // message dans client
         public Client()
         {
         }
