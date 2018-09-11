@@ -8,7 +8,7 @@ using System.Data;
 namespace HelloEntityFramework
 {
     public partial class Modele
-    {
+    {  // un message dans le fichier modele
         partial void OnContextCreated()
         {
             SavingChanges += new EventHandler(Modele_SavingChanges);
