@@ -17,6 +17,8 @@
 
 // Nom du fichier d'origine :
 // Date de génération : 2017-10-16 13:29:10
+
+    // un message dans le fichier modele
 namespace HelloEntityFramework
 {
     
