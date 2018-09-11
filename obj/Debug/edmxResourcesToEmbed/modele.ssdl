@@ -108,6 +108,18 @@ avertissement 6002: La table/vue 'maintenanceDB.dbo.Numero' n'a pas de clé prim
     <Property Name="Url" Type="varchar" MaxLength="255" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'maintenanceDB.dbo.vClientNumero' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="vClientNumero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="IDx" Type="int" />
+    <Property Name="ipn" Type="int" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prenom" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'maintenanceDB.dbo.VueLivres' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <EntityType Name="VueLivres">
     <Key>
@@ -244,6 +256,15 @@ avertissement 6002: La table/vue 'maintenanceDB.dbo.VueLivres' n'a pas de clé p
 [Numero].[ipn] AS [ipn], 
 [Numero].[EntityID] AS [EntityID]
 FROM [dbo].[Numero] AS [Numero]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vClientNumero" EntityType="Self.vClientNumero" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[vClientNumero].[id] AS [id], 
+[vClientNumero].[IDx] AS [IDx], 
+[vClientNumero].[ipn] AS [ipn], 
+[vClientNumero].[Nom] AS [Nom], 
+[vClientNumero].[Prenom] AS [Prenom]
+FROM [dbo].[vClientNumero] AS [vClientNumero]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="VueLivres" EntityType="Self.VueLivres" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

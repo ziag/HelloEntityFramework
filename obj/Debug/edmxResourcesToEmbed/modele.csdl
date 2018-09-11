@@ -30,6 +30,7 @@
     <FunctionImport Name="GetAuteurs" EntitySet="Auteur" ReturnType="Collection(HelloEntityFramework.Auteur)" />
     <EntitySet Name="VueLivres" EntityType="HelloEntityFramework.VueLivres" />
     <EntitySet Name="Numero" EntityType="HelloEntityFramework.Numero" />
+    <EntitySet Name="vClientNumero" EntityType="HelloEntityFramework.vClientNumero" />
   </EntityContainer>
   <EntityType Name="Auteur">
     <Key>
@@ -146,5 +147,15 @@
     <Property Name="IDx" Type="Int32" />
     <Property Name="ipn" Type="Int32" />
     <Property Name="EntityID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vClientNumero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="IDx" Type="Int32" />
+    <Property Name="ipn" Type="Int32" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
