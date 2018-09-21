@@ -26,6 +26,7 @@ namespace HelloEntityFramework
         static void Main(string[] args)
         {
             // dans programme de bracnhe mainProgram
+            // ben oui dans la main
             // Exemples de Selection (SQL : SELECT)
             SelectLinQ();
             SelectQueryBuilder();
