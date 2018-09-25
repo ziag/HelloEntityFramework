@@ -29,6 +29,7 @@ namespace HelloEntityFramework
             // ben oui dans la main 
             // retour 
             // Exemples de Selection (SQL : SELECT)
+            // une nouvelle MAJ
             SelectLinQ();
             SelectQueryBuilder();
             SelectEntitySQL();
